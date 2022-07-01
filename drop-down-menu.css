@@ -1,86 +1,85 @@
+.drop-down-menu{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
 
-            .drop-down-menu{
-                position: relative;
-                display: inline-block;
-                cursor: pointer;
+}
 
-            }
+.drop-down-menu>.menu-header{
+    padding: 10px 20px;
+    transition: transform 50ms;
+    
+}
 
-            .drop-down-menu>.menu-header{
-                padding: 10px 20px;
-                transition: transform 50ms;
-                
-            }
+.drop-down-menu:hover>.menu-header{
+    transform: scale(1.05);
+}
 
-            .drop-down-menu:hover>.menu-header{
-                transform: scale(1.05);
-            }
+.drop-down-menu>.drop-down{
+    position: absolute;
+    overflow: hidden;
+    background: white;
+    height: 0;
+    width: max-content;
+    opacity: 0;
 
-            .drop-down-menu>.drop-down{
-                position: absolute;
-                overflow: hidden;
-                background: white;
-                height: 0;
-                width: max-content;
-                opacity: 0;
+    transition: height 200ms ease-in-out, opacity 200ms;
+    
+    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, .5);
+}
 
-                transition: height 200ms ease-in-out, opacity 200ms;
-               
-                box-shadow: inset -1px -1px 3px rgba(0, 0, 0, .5);
-            }
+.drop-down-menu>.drop-down>ul{
+    list-style: none;
+    padding: 30px 50px;
+    margin: 0;
+}
 
-            .drop-down-menu>.drop-down>ul{
-                list-style: none;
-                padding: 30px 50px;
-                margin: 0;
-            }
+.drop-down-menu.expanded>.drop-down{
+    /* height handled with javascript */
+    opacity: 1;
+    z-index:1;
+    overflow:visible;
 
-            .drop-down-menu.expanded>.drop-down{
-                /* height handled with javascript */
-                opacity: 1;
-                z-index:1;
-                overflow:visible;
+}
 
-            }
+.drop-down-menu li{
+    transition: transform 100ms;
+    padding: 5px;
+}
 
-            .drop-down-menu li{
-                transition: transform 100ms;
-                padding: 5px;
-            }
+.drop-down-menu li:hover{
+    transform: scale(1.05);
+}
 
-            .drop-down-menu li:hover{
-                transform: scale(1.05);
-            }
+/* 
+    allows for dropdown menu within a dropdown menu
+    styles it so it doesn't obscure rest of menu
+*/
+.drop-down-menu .drop-down-menu .drop-down{
+    /* height handled with javascript */
+    left: 100%;
+    top: 0;
 
-            /* 
-                allows for dropdown menu within a dropdown menu
-                styles it so it doesn't obscure rest of menu
-            */
-            .drop-down-menu .drop-down-menu .drop-down{
-                /* height handled with javascript */
-                left: 100%;
-                top: 0;
+}
 
-            }
+.drop-down-menu.open-right>.menu-header::after{
+    position: absolute;
+    content: "\203A";
+    right: 10px;
 
-            .drop-down-menu.open-right>.menu-header::after{
-                position: absolute;
-                content: "\203A";
-                right: 10px;
+}
+.drop-down-menu.open-left>.drop-down{
+    /* height handled with javascript */
+    left: auto;
+    right: calc(100%);
+    top: 0;
 
-            }
-            .drop-down-menu.open-left>.drop-down{
-                /* height handled with javascript */
-                left: auto;
-                right: calc(100%);
-                top: 0;
+}
 
-            }
-
-            .drop-down-menu.open-left>.menu-header::before{
-                position: absolute;
-                content: "\2039";
-                left: 10px;
+.drop-down-menu.open-left>.menu-header::before{
+    position: absolute;
+    content: "\2039";
+    left: 10px;
 
 
-            }
+}
