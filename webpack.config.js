@@ -1,12 +1,17 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: 'drop-down-menu.js',
+  entry: './index.js',
   output: {
-    filename: 'drop-down-menu.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
+    path: path.resolve(__dirname, './dist'),
   },
+  devtool: 'eval-source-map',
+  plugins: [
+    new HtmlWebpackPlugin({ template: './index.html' }),
+  ],
   module: {
     rules: [
       {
@@ -14,7 +19,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.html$/i,
+        test: /template\.html$/i,
         type: 'asset/source',
       },
     ],
