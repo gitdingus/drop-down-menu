@@ -1,6 +1,6 @@
 import { createHtmlElement } from 'dom-utils';
-import menuHtml from './menu-header.html';
-import menuDropdown from './menu-drop-down.html';
+import menuHtml from './menu-header-template.html';
+import menuDropdown from './menu-drop-down-template.html';
 import './drop-down-menu.css';
 
 const createMenuTitle = function createMenuTitleElement({ displayText, linkSrc = '' }) {
@@ -76,11 +76,11 @@ const addBehavior = function addBehaviorsToDropDownList(dropdownMenu, behavior) 
 const createMenuItem = function createDropdownMenuListItem({
   type, displayText = '', linkSrc = '', content = null,
 }) {
-  const li = createHtmlElement({ type: 'li' });
+  const li = createHtmlElement({ tag: 'li' });
 
   if (type === 'link') {
     const link = createHtmlElement({
-      type: 'a',
+      tag: 'a',
       properties: {
         textContent: displayText,
         href: linkSrc,
@@ -98,22 +98,24 @@ const createMenuItem = function createDropdownMenuListItem({
 };
 
 export default function createDropDownMenu({ menuHeader, behavior = 'hover' }) {
-  const dropdownMenu = createHtmlElement({ type: 'div' });
-  dropdownMenu.outerHTML = menuHtml;
+  const dropdownMenuTemplate = createHtmlElement({ tag: 'template' });
+  dropdownMenuTemplate.innerHTML = menuHtml;
+  const dropdownMenu = dropdownMenuTemplate.content.firstElementChild.cloneNode(true);
 
   dropdownMenu.querySelector('.menu-header').appendChild(createMenuTitle(menuHeader));
   addBehavior(dropdownMenu, behavior);
 
   const addMenuItem = function addMenuItemToDropdownMenuList(itemInfo) {
     let dropdownList = dropdownMenu.querySelector('.drop-down');
-    if (dropdownList === 'null') {
-      dropdownList = createHtmlElement({ type: 'div' });
-      dropdownList.outerHTML = menuDropdown;
+    if (dropdownList === null) {
+      const dropdownListTemplate = createHtmlElement({ tag: 'template' });
+      dropdownListTemplate.innerHTML = menuDropdown;
+      dropdownList = dropdownListTemplate.content.firstElementChild.cloneNode(true);
 
       dropdownMenu.appendChild(dropdownList);
     }
 
-    dropdownList.appendChild(createMenuItem(itemInfo));
+    dropdownList.querySelector('.menu-list').appendChild(createMenuItem(itemInfo));
   };
 
   return { dropdownMenu, addMenuItem };
