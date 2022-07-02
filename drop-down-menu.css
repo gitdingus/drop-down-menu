@@ -5,6 +5,16 @@
 
 }
 
+.drop-down-menu a,
+.drop-down-menu a:link,
+.drop-down-menu a:visited,
+.drop-down-menu a:hover,
+.drop-down-menu a:active {
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+}
+
 .drop-down-menu>.menu-header{
     padding: 10px 20px;
     transition: transform 50ms;
@@ -15,6 +25,9 @@
     transform: scale(1.05);
 }
 
+.drop-down-menu>.menu-header>h1{
+    margin: 0;
+}
 .drop-down-menu>.drop-down{
     position: absolute;
     overflow: hidden;
