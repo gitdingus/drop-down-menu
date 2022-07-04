@@ -56,12 +56,12 @@
 
 }
 
-.drop-down-menu li{
+.drop-down-menu li.link{
     transition: transform 100ms;
     padding: 5px;
 }
 
-.drop-down-menu li:hover{
+.drop-down-menu li.link:hover{
     transform: scale(1.05);
 }
 

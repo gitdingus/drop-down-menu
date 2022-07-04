@@ -87,6 +87,7 @@ const createMenuItem = function createDropdownMenuListItem({
       },
     });
 
+    li.classList.add('link');
     li.appendChild(link);
   } else if (type === 'content') {
     li.appendChild(content);
